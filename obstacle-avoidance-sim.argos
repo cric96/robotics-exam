@@ -1,0 +1,203 @@
+<?xml version="1.0" ?>
+<argos-configuration>
+
+  <!-- ************************* -->
+  <!-- * General configuration * -->
+  <!-- ************************* -->
+  <framework>
+    <experiment length="1000000" ticks_per_second="1" />
+  </framework>
+
+  <!-- *************** -->
+  <!-- * Controllers * -->
+  <!-- *************** -->
+  <controllers>
+
+    <!-- ***************************************************** -->
+    <!-- * This is the Lua controller to associate to robots * -->
+    <!-- ***************************************************** -->
+    <lua_controller id="lua">
+      <!-- Normal actuator/sensor configuration follows -->
+      <actuators>
+        <differential_steering implementation="default" />
+      </actuators>
+      <sensors>
+        <footbot_proximity implementation="default" show_rays="true" />
+        <footbot_motor_ground implementation="rot_z_only" />
+      </sensors>
+      <!-- No required configuration -->
+      <params script="obstacle-avoidance.lua" />
+      <!-- Optionally, you can pass a script as a controller parameter: -->
+      <!-- params script="../../src/testing/experiment/test_gripper.lua" / -->
+       
+    </lua_controller>
+
+  </controllers>
+
+  <!-- *********************** -->
+  <!-- * Arena configuration * -->
+  <!-- *********************** -->
+  <arena size="4.2, 5.2, 1.2" center="0,0,0.5">
+    <floor id="f" source="image" path="no_spot.png" />
+
+    <box id="bn" size="0.1, 5, 0.2" movable="false">
+      <body position="2,0,0"  orientation="0,0,0" />
+    </box>
+    <box id="bs" size="0.1, 5, 0.2" movable="false">
+      <body position="-2,0,0" orientation="0,0,0" />
+    </box>
+    <box id="be" size="4, 0.1, 0.2" movable="false">
+      <body position="0,-2.5,0" orientation="0,0,0" />
+    </box>
+    <box id="bw" size="4, 0.1, 0.2" movable="false">
+      <body position="0,2.5,0" orientation="0,0,0" />
+    </box>
+
+    <distribute>
+      <position method="uniform" min="0,0,0" max="0,0,0" /> 
+      <orientation method="gaussian" mean="0,0,0" std_dev="0,0,0" /> 
+      <entity quantity="1" max_trials="100"> 
+        <foot-bot id="fb" 
+                  rab_range = "1">
+          <controller config="lua" />
+        </foot-bot>
+      </entity> 
+    </distribute> 
+
+    <!-- OBSTACLES -->
+    <cylinder id="cyl1" radius="0.2" height="0.5" movable="false">
+      <body position="1.5,0,0" orientation="0,0,0" />
+    </cylinder>
+    <cylinder id="cyl2" radius="0.2" height="0.5" movable="false">
+      <body position="1.5,-1,0" orientation="0,0,0" />
+    </cylinder>
+    <cylinder id="cyl3" radius="0.2" height="0.5" movable="false">
+      <body position="1.5,-2,0" orientation="0,0,0" />
+    </cylinder>
+    <cylinder id="cyl4" radius="0.2" height="0.5" movable="false">
+      <body position="1.5,1,0" orientation="0,0,0" />
+    </cylinder>
+    <cylinder id="cyl5" radius="0.2" height="0.5" movable="false">
+      <body position="1.5,2,0" orientation="0,0,0" />
+    </cylinder>
+    
+    <cylinder id="cyl20" radius="0.2" height="0.5" movable="false">
+      <body position="0.75,0,0" orientation="0,0,0" />
+    </cylinder>
+    <cylinder id="cyl21" radius="0.2" height="0.5" movable="false">
+      <body position="0.75,-1,0" orientation="0,0,0" />
+    </cylinder>
+    <cylinder id="cyl23" radius="0.2" height="0.5" movable="false">
+      <body position="0.75,1,0" orientation="0,0,0" />
+    </cylinder>
+  
+
+     <cylinder id="cyl10" radius="0.2" height="0.5" movable="false">
+      <body position="0,0.5,0" orientation="0,0,0" />
+    </cylinder>
+    <cylinder id="cyl11" radius="0.2" height="0.5" movable="false">
+      <body position="0,-1.5,0" orientation="0,0,0" />
+    </cylinder>
+    <cylinder id="cyl12" radius="0.2" height="0.5" movable="false">
+      <body position="0,-0.5,0" orientation="0,0,0" />
+    </cylinder>
+    <cylinder id="cyl13" radius="0.2" height="0.5" movable="false">
+      <body position="0,1.5,0" orientation="0,0,0" />
+    </cylinder>
+    
+    <box id="box1" size="1.2,0.1,0.5" movable="false">
+      <body position="-1.6,2.1,0" orientation="45,0,0" />
+    </box>
+     <box id="box2" size="1.2,0.1,0.5" movable="false">
+      <body position="-1.6,-2.1,0" orientation="-45,0,0" />
+    </box>
+
+    <box id="box40" size="0.4,0.1,0.2" movable="false">
+      <body position="1.9,2.4,0" orientation="-45,0,0" />
+    </box>
+     <box id="box41" size="0.4,0.1,0.2" movable="false">
+      <body position="1.9,-2.4,0" orientation="45,0,0" />
+    </box>
+
+
+    <box id="box3" size="0.5,0.1,0.5" movable="false">
+      <body position="0.4,2.3,0" orientation="-45,0,0" />
+    </box>
+    <box id="box4" size="0.5,0.1,0.5" movable="false">
+      <body position="0.7,2.3,0" orientation="45,0,0" />
+    </box>
+
+    <box id="box5" size="0.5,0.1,0.5" movable="false">
+      <body position="0.4,-2.3,0" orientation="45,0,0" />
+    </box>
+    <box id="box6" size="0.5,0.1,0.5" movable="false">
+      <body position="0.7,-2.3,0" orientation="-45,0,0" />
+    </box>
+
+    <box id="ob1" size="0.5,0.1,0.5" movable="false">
+      <body position="-0.7,-2.0,0" orientation="120,0,0" />
+    </box>
+
+    <box id="ob2" size="0.5,0.1,0.5" movable="false">
+      <body position="-0.7,-1.0,0" orientation="90,0,0" />
+    </box>
+
+    <box id="ob3" size="0.5,0.1,0.5" movable="false">
+      <body position="-0.7,-0,0" orientation="-45,0,0" />
+    </box>
+
+    <box id="ob4" size="0.5,0.3,0.5" movable="false">
+      <body position="-0.7,1,0" orientation="180,0,0" />
+    </box>
+
+    <box id="ob5" size="0.5,0.2,0.5" movable="false">
+      <body position="-0.7,2,0" orientation="45,0,0" />
+    </box>
+
+    <box id="ob10" size="0.3,0.3,0.5" movable="false">
+      <body position="-1.4,-1.0,0" orientation="20,0,0" />
+    </box>
+
+    <box id="ob11" size="0.3,0.3,0.5" movable="false">
+      <body position="-1.4,-0,0" orientation="-30,0,0" />
+    </box>
+
+    <box id="ob12" size="0.3,0.3,0.5" movable="false">
+      <body position="-1.4,1,0" orientation="180,0,0" />
+    </box>
+  </arena>
+
+  <!-- ******************* -->
+  <!-- * Physics engines * -->
+  <!-- ******************* -->
+  <physics_engines>
+    <dynamics2d id="dyn2d"/>
+  </physics_engines>
+
+  <!-- ********* -->
+  <!-- * Media * -->
+  <!-- ********* -->
+  <media>
+    <led id="leds" />
+  </media>
+
+  <!-- ****************** -->
+  <!-- * Visualization * -->
+  <!-- ****************** -->
+  <visualization>
+
+    <!-- ************************************************************************ -->
+    <!-- * To activate the Lua editor, just use the 'lua_editor' flag attribute * -->
+    <!-- ************************************************************************ -->
+    <!--    
+    <qt-opengl lua_editor="true">
+      <camera>
+        <placement idx="0" position="-0.00569879,0.01,4.86243" look_at="-0.00569879,0.01,3.86243" lens_focal_length="20" />
+        <placement idx="1" position="-2,0,2" look_at="0,0,0" lens_focal_length="20" />
+        <placement idx="2" position="0.884183,0.359128,0.490269" look_at="0.924486,-0.486744,-0.0415919" lens_focal_length="20" />
+      </camera>
+    </qt-opengl>
+    -->
+  </visualization>
+
+</argos-configuration>
