@@ -5,7 +5,7 @@
   <!-- * General configuration * -->
   <!-- ************************* -->
   <framework>
-    <experiment length="600000" ticks_per_second="1" />
+    <experiment length="120000" ticks_per_second="5" />
   </framework>
 
   <!-- *************** -->
@@ -62,7 +62,7 @@
     </foot-bot>
 
     <light id="light"
-           position="1.5,1.5,0.5"
+           position="1.5,1,0"
            orientation="0,0,0"
            color="yellow"
            intensity="1"

@@ -1,0 +1,16 @@
+@startuml
+
+title Learning schema
+[*] -up-> Trial
+Trial : Eval Fitness
+Trial : Update Fitness
+Trial -> Eval : [trial.isOver]
+Eval -> Mutate : [goodFitness]/updateBestFitness
+Eval -> Mutate : [badFitness]/revertCoefficients
+Mutate : randomCoefficientsMutation
+Mutate -up-> TurnTowardsStart
+TurnTowardsStart -left-> ReturnToStart : [rightAngle]
+TurnTowardsStart : spin
+ReturnToStart : forward
+ReturnToStart --> Trial : [rightPosition]
+@enduml

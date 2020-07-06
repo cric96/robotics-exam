@@ -35,8 +35,9 @@ function print_pair(pair) print(pair(x), pair(y)) end
 function print_triple(triple) print(triple(x), triple(y), triple(z)) end
 function print_quadruple(quad) print(quad(x), quad(y), quad(z), quad(k)) end
 
+-- pimp my library pattern: extend the robot funcionality. Return the maximum value from a sensor array.
 robot.maxSensorValue = function(sensors)
-    value = -1 -- highest value found so far
+    value = -1 
 	for i=1,#sensors do
 		if value < sensors[i].value then
 			value = sensors[i].value
@@ -44,6 +45,7 @@ robot.maxSensorValue = function(sensors)
     end
     return value
 end
+-- copy the first *n* elements from *reference* to *result*
 function copyTableIn(result, reference, n)
     for i=1,n do
         result[i] = reference[i]

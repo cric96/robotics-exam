@@ -11,11 +11,17 @@
         - set evalFunction with putEvalFunction;
 ]]--
 local trial = {}
+-- used to print statistics
 local resetTime = 0
+-- main function used to control the robot tick after tick
 local actionFunction = {}
+-- used to count current trial
 local times = 0
+-- tick fixed amount of each trail
 local testTimes = 0
+-- the function used to computer reward at each tick
 local evalFunction = {}
+-- the reward accumulated during the tick
 local accumulativeReward = 0
 -- restore the current trial configuration
 function trial.restart()

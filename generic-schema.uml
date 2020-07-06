@@ -1,0 +1,12 @@
+@startuml
+
+title Trial and error schema
+[*] --> Trial
+Trial : Eval Fitness
+Trial : Update Fitness
+Trial -> Eval : [trial.isOver]
+Eval -> Mutate : [goodFitness]/updateBestFitness
+Eval -> Mutate : [badFitness]/revertCoefficients
+Mutate -> Trial
+Mutate : randomCoefficientsMutation
+@enduml
